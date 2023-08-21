@@ -1,0 +1,78 @@
+include:
+- hello.py
+kind: ArchiveUploadSpec
+name: hello-py-uhSw
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: hellopython-158ca6f5-e3e1-44d6-ad42-0f6008f6021b
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://hello-py-uhSw
+  environment:
+    name: python
+    namespace: ""
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2023-08-21T16:02:40Z"
+
+---
+apiVersion: fission.io/v1
+kind: Function
+metadata:
+  creationTimestamp: null
+  name: hellopython
+spec:
+  InvokeStrategy:
+    ExecutionStrategy:
+      ExecutorType: poolmgr
+      MaxScale: 0
+      MinScale: 0
+      SpecializationTimeout: 120
+      TargetCPUPercent: 0
+    StrategyType: execution
+  concurrency: 500
+  environment:
+    name: python
+    namespace: ""
+  functionTimeout: 60
+  idletimeout: 120
+  package:
+    packageref:
+      name: hellopython-158ca6f5-e3e1-44d6-ad42-0f6008f6021b
+      namespace: ""
+  requestsPerPod: 1
+  resources: {}
+
+---
+include:
+- hello.py
+kind: ArchiveUploadSpec
+name: hello-py-JSMM
+
+---
+apiVersion: fission.io/v1
+kind: Package
+metadata:
+  creationTimestamp: null
+  name: hellopython-cb08079c-7816-482b-b203-a0a67ef6af48
+spec:
+  deployment:
+    checksum: {}
+    type: url
+    url: archive://hello-py-JSMM
+  environment:
+    name: python-env
+    namespace: ""
+  source:
+    checksum: {}
+status:
+  buildstatus: none
+  lastUpdateTimestamp: "2023-08-21T16:04:33Z"
